@@ -36,6 +36,10 @@ module.exports = function(grunt){
 
       options.additionalFiles.push(file);
 
+      if (typeof options.github !== 'undefined' && !options.github.apiRoot) {
+        options.github.apiRoot = 'https://api.github.com'; // Default Github.com api
+      }
+
       return {
         files: options.additionalFiles,
         newVersion: newVersion,
@@ -219,7 +223,7 @@ module.exports = function(grunt){
       }
 
       request
-        .post('https://api.github.com/repos/' + options.github.repo + '/releases')
+        .post(options.github.apiRoot + '/repos/' + options.github.repo + '/releases')
         .auth(process.env[options.github.usernameVar], process.env[options.github.passwordVar])
         .set('Accept', 'application/vnd.github.manifold-preview')
         .set('User-Agent', 'grunt-release')
