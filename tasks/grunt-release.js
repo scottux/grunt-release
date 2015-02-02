@@ -21,7 +21,7 @@ module.exports = function(grunt){
       var files;
 
       if (options.bump) {
-        newVersion = semver.inc(pkg.version, type || 'patch');
+        newVersion = semver.inc(pkg.version, type || 'patch', options.preId);
       }
 
       // Check if options.additionalFiles is a single file
@@ -62,7 +62,8 @@ module.exports = function(grunt){
       push: true,
       pushTags: true,
       npm: true,
-      remote: 'origin'
+      remote: 'origin',
+      preId: null
     }, (grunt.config.data[this.name] || {}).options);
     var config = setup(options.file, type);
 

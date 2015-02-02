@@ -66,8 +66,8 @@ grunt release:prerelease
 ```
 
 `prerelease` will just update the number after `MAJOR.MINOR.PATCH` (eg: `1.0.0-1`)
-If you want to add an alphanumeric identifier, you will need to add it by hand.
-Example: add `-alpha.0` to get something like `1.0.0-alpha.0`. Calling `grunt release:prerelease` will just update the last number to `1.0.0-alpha.1`.
+If you want to add an alphanumeric identifier, use the `preId` option.
+Example: add `preId: 'alpha'` to get something like `1.0.0-alpha.0`.
 
 **Releasing Unstable/Beta Versions**
 Sometimes it is useful to publish an 'unstable' or 'beta' version to `npm`, while leaving your last stable release as the default that gets installed on an `npm install`.
@@ -90,7 +90,7 @@ grunt release --npmtag canary
 NOTE: If the tag you pass is **true**, then the tag will be the *new* version number after the bump. Otherwise it will be the string you provided.
 
 
-**Bump multuple files at once**
+**Bump multiple files at once**
 
 Sometimes you may need to bump multiple files while releasing.
 
@@ -151,6 +151,7 @@ The following are all the release steps, you can disable any you need to:
       tagName: 'some-tag-<%= version %>', //default: '<%= version %>'
       commitMessage: 'check out my release <%= version %>', //default: 'release <%= version %>'
       tagMessage: 'tagging version <%= version %>', //default: 'Version <%= version %>',
+      preId: 'rc', // default: null
       github: {
         repo: 'geddski/grunt-release', //put your user/repo here
         usernameVar: 'GITHUB_USERNAME', //ENVIRONMENT VARIABLE that contains Github username
