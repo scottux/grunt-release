@@ -228,8 +228,9 @@ module.exports = function(grunt){
         .set('Accept', 'application/vnd.github.manifold-preview')
         .set('User-Agent', 'grunt-release')
         .send({
-          "tag_name": tagName,
-          "name": tagMessage
+            tag_name: tagName,
+            name: tagMessage,
+            prerelease: type === 'prerelease'
         })
         .end(function(res){
           if (res.statusCode === 201){
